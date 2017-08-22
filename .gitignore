@@ -1,0 +1,6 @@
+./data/
+logs/
+tmp/
+.DS_Store
+vendor/
+composer.phar

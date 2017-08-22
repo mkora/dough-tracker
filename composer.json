@@ -1,0 +1,13 @@
+{
+    "require": {
+        "slim/slim": "^3.0",
+        "monolog/monolog": "^1.23",
+        "pavlakis/slim-cli": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Budget\\": "src/libs/Budget",
+            "App\\": ["src/controllers"]
+        }
+    }
+}
