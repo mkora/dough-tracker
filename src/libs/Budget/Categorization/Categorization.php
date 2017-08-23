@@ -57,6 +57,17 @@ class Categorization
 	}
 
 
+	public static function getConfigLabels()
+	{
+			$config = self::getConfig();
+			$res = [];
+			foreach ($config as $val) {
+					$res[$val['label']] = $val['title'];
+			}
+			return $res;
+	}
+
+
 	public function set($reset = false)
 	{
 		if (!$this->item)

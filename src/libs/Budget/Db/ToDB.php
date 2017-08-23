@@ -40,9 +40,11 @@ class ToDB implements DbAdapterInterface
 	public function getItems(array $c = array(), $sort = array()) : array
 	{
 		$result = array();
-		$data = $this->manager->executeQuery("$this->dbname.$this->dbcollection",
+
+		$cursor = $this->manager->executeQuery("$this->dbname.$this->dbcollection",
 								new MongoQuery($c, ['sort' => $sort]));
-		foreach ($data as $d) {
+
+		foreach ($cursor as $d) {
 			$result[] = new T((array)$d);
 		}
 		return $result;
@@ -117,8 +119,11 @@ class ToDB implements DbAdapterInterface
 
 		$result = (array)current($result->toArray());
 
-		if (isset($result['ok']) && $result['ok'] == 1 && !empty($result['result']))
-			return @(array)reset($result['result']);
+		if (isset($result['ok']) && $result['ok'] == 1 && !empty($result['result'])) {
+			return array_map(function($v) {
+				return (array)$v;
+			}, $result['result']);
+		}
 
 		return false;
 	}
@@ -126,7 +131,7 @@ class ToDB implements DbAdapterInterface
 
 	public function countItems(array $c = array())
 	{
-		// @todo rewrite
+		// @todo
 		$items = $this->manager->executeQuery("$this->dbname.$this->dbcollection",
 									new MongoQuery($c));
 
@@ -137,7 +142,7 @@ class ToDB implements DbAdapterInterface
 
 	public function existItem(array $c)
 	{
-		// @todo rewrite
+		// @todo
 		$items = $this->manager->executeQuery("$this->dbname.$this->dbcollection",
 									new MongoQuery($c));
 
