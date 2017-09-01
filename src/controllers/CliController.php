@@ -1,12 +1,4 @@
 <?php
-/**
- * php cli.php /cli/parse-files GET
- * php cli.php /cli/parse-files GET file=*.CSV
- *
- * php cli.php /cli/recategorize GET
- * php cli.php /cli/output-titles GET
- *
- */
 
 namespace App;
 
@@ -163,6 +155,74 @@ class CliController
     protected function logIt($txt, $type = Log::INFO)
     {
         $this->container->get('logger')->log($type, $txt);
+    }
+
+    public function genMockDataFile(IRequest $request, IResponse $response, array $args) {
+        $this->logIt("Generating mock data");
+        $magicNumbers = [
+          'rent' => [
+            'count' => 1,
+            'min'   => 1200,
+            'max'   => 1200,
+          ],
+          'utilities' => [
+            'count' => 3,
+            'min'   => 50,
+            'max'   => 100,
+          ],
+          'groceries' => [
+            'count' => 10,
+            'min'   => 5,
+            'max'   => 100,
+          ],
+          'stuff' => [
+            'count' => 2,
+            'min'   => 50,
+            'max'   => 300,
+          ],
+          'unexpected' => [
+            'count' => 1,
+            'min'   => 5,
+            'max'   => 1200,
+          ],
+          'income' => [
+            'count' => 2,
+            'min'   => 1000,
+            'max'   => 1500,
+          ]
+        ];
+
+        $str = '';
+        for ($year = 2014; $year <= (int)date('Y'); $year++) {
+            $startMonth = ($year == 2014) ? 7 : 1;
+            $endMonth = ($year == (int)date('Y')) ? (int)date('m'): 12;
+            for ($month = $startMonth; $month <= $endMonth; $month++) {
+                foreach ($magicNumbers as $categ => $nums)
+                    for ($i = 0; $i < $nums['count']; $i++) {
+                      $date = mktime(0, 0, 0, $month, rand(1, 28), $year);
+                      $title = ucfirst($categ) . ' title #' . ($i + 1);
+                      $type = ($categ === 'income') ? 1 : -1;
+
+                      if ($categ === 'unexpected') {
+                        $sum = rand(0, 1) * rand($nums['min'], $nums['max']);
+                      } else {
+                        $sum = rand($nums['min'], $nums['max']);
+                      }
+
+                      $tpl = "{\"month\": $month, \"year\": $year, \"date\" : $date, \"type\" : $type, \"category\" : \"$categ\", \"title\" : \"$title\", \"sum\" : $sum }\n";
+
+                      $str .= $tpl;
+                    }
+              }
+          }
+
+          if (!$str) {
+            $this->logIt('No data found. Nothing to write! Exit', Log::ERROR);
+            exit;
+          }
+          $dir = '../data/';
+          file_put_contents($dir.'mock-data.json', $str);
+          $this->logIt("Writing to {$dir}mock-data.json... Finished!");
     }
 
  }

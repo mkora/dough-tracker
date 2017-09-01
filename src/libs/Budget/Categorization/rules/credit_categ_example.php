@@ -7,52 +7,26 @@ return array(
 			'rule' => array('Rent',),
 	),
 	1 => array(
-			'label' => 'mbta',
-			'title' => 'Transport',
-			'rule' => array('SUBWAY',),
-	),
-	2 => array(
 			'label' => 'utilities',
 			'title' => 'Utilities',
 			'rule' => array('COMCAST',),
 	),
-	3 => array(
+	2 => array(
 			'label' => 'groceries',
-			'title' => 'Groceries / Food',
+			'title' => 'Groceries',
 			'rule' => null,
 	),
-	4 => array(
-			'label' => 'out',
-			'title' => 'Events',
-			'rule' => array('TICKET',),
-	),
-	5 => array(
+	3 => array(
 			'label' => 'stuff',
-			'title' => 'Stuff',
+			'title' => 'Shopping',
 			'rule' => array('AMAZON',),
 	),
-	6 => array(
-			'label' => 'gym',
-			'title' => 'Gym',
-			'rule' => array(),
-	),
-	7 => array(
-			'label' => 'study',
-			'title' => 'School',
-			'rule' => array(),
-	),
-	8 => array(
-			'label' => 'car',
-			'title' => 'Car',
-			'rule' => array(),
-	),
-	9 => array(
+	4 => array(
 			'label' => 'unexpected',
 			'title' => 'Unexpected',
 			'rule' => array(),
 	),
-
-	10 =>array(
+	5 =>array(
 		'label' => 'income',
 		'title' => 'Income',
 	),

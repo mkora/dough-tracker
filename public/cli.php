@@ -1,4 +1,15 @@
 <?php
+/**
+ * php cli.php /cli/parse-files GET
+ * php cli.php /cli/parse-files GET file=*.CSV
+ *
+ * Service utils:
+ *  php cli.php /cli/recategorize GET
+ *  php cli.php /cli/output-titles GET
+ *  php cli.php /cli/mock-file GET
+ */
+
+
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
@@ -59,5 +70,6 @@ $container['notFoundHandler'] = function ($container) {
 $app->map(['GET'], '/cli/parse-files', App\CliController::class . ':parse');
 $app->map(['GET'], '/cli/recategorize', App\CliController::class . ':recategorize');
 $app->map(['GET'], '/cli/output-titles', App\CliController::class . ':outputTitles');
+$app->map(['GET'], '/cli/mock-file', App\CliController::class . ':genMockDataFile');
 
 $app->run();

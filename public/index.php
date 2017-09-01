@@ -1,4 +1,18 @@
 <?php
+/**
+ * Output{}: _an_ amount where (params)
+ *   <server>/api/data-groupby?m=1&y=2017[&cg=rent][&type=-1]
+ *
+ * Output{}: a list
+ *  <server>/api/data-details?m=1&y=2017
+ *
+ * Output{}: a table of a grouped data where (params)
+ *  <server>/api/data-tableby[?m=1][&y=2017]
+ *
+ * Output{}: a list
+ *  <server>/api/categories
+*/
+
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
