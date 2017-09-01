@@ -1,0 +1,26 @@
+<h3>Complete Statistics</h3>
+<div>
+  <table class="table table-responsive" *ngIf="tableData?.length">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th *ngFor="let year of years">
+          {{ year }}
+        </th>
+      </tr>
+    </thead>
+  <tbody>
+    <tr *ngFor="let category of categories | toArray" [class.table-active]="isTotalRow(category)">
+      <th scope="row">{{ category }}</th>
+      <td *ngFor="let year of years" [class.table-warning]="isNotFullYear(year)">
+        <data-item [data]="getCellData(year, category)"></data-item>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+  <bar-chart [title]="'Total Debit and Credit by Years'"
+    [seriesData]="chartData" [labels]="years"></bar-chart>
+</div>
+<div *ngIf="!tableData?.length">
+  <h3>No data found</h3>
+</div>

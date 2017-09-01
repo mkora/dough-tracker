@@ -1,0 +1,18 @@
+<!-- Page Content -->
+<div class="container">
+  <div class="row row-offcanvas row-offcanvas-right" [class.active]="isToggleClicked">
+    <div class="col-12 col-md-9">
+      <p class="float-right hidden-md-up">
+        <button type="button" class="btn btn-primary btn-sm"
+          (click)="onToggleClick()">Toggle Available Periods</button>
+      </p>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-6 col-md-3 sidebar-offcanvas">
+      <nav-dates></nav-dates>
+    </div>
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->

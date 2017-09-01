@@ -1,0 +1,24 @@
+<h3>Details in {{month}}/{{year}}</h3>
+<table class="table table-responsive" *ngIf="tableData?.length">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Category</th>
+      <th>Date</th>
+      <th>Title</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+<tbody>
+  <tr *ngFor="let data of tableData; let i = index" [class.table-active]="isTotalRow(data.category)">
+    <th>{{i + 1}}</th>
+    <td>{{getCategoryTitle(data.category)}}</td>
+    <td>{{data.date * 1000 | date: 'short'}}</td>
+    <td>{{data.title}}</td>
+    <td><data-item [data] = "data.sum * data.type"></data-item></td>
+  </tr>
+</tbody>
+</table>
+<div *ngIf="!tableData?.length">
+  <h3>No data found</h3>
+</div>

@@ -1,0 +1,26 @@
+<h3>Complete Balance in {{year}}</h3>
+<table class="table table-responsive" *ngIf="tableData?.length">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th *ngFor="let month of months">
+        {{ month }}
+      </th>
+    </tr>
+  </thead>
+<tbody>
+  <tr *ngFor="let category of categories | toArray" [class.table-active]="isTotalRow(category)">
+    <th scope="row">{{ category }}</th>
+    <td *ngFor="let month of months; let i = index" [class.table-active]="isAvgColumn(month)">
+      <data-item [data] = "getCellData(i + 1, category)"></data-item>
+    </td>
+  </tr>
+</tbody>
+</table>
+<bar-chart *ngIf="chartData" [title]="'Total Debit and Credit by Months in ' + year"
+  [isLine]="true" [seriesData]="chartData.line" [labels]="months | without:'Avg'"></bar-chart>
+<bar-chart *ngIf="chartData?.polar" [title]="'Average Month Consumption by Categories in ' + year"
+  [isPolar]="true" [seriesData]="chartData.polar" [labels]="categories | toArray | without:'Income' | without: 'Amount Spent'| without:'Amount Remain'"></bar-chart>
+<div *ngIf="!tableData?.length">
+  <h3>No data found</h3>
+</div>
