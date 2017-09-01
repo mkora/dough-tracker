@@ -42,9 +42,10 @@ export class NavDatesComponent {
           months = months.filter((v, k) =>
             months.indexOf(this.config.dataFirstMonthEver) <= k);
         }
+        let currMonth = months[new Date().getMonth()];
         if (i == this.config.dataCurrentYear) {
           months = months.filter((v, k) =>
-            months.indexOf(this.config.dataFirstMonthEver) >= k);
+            months.indexOf(currMonth) >= k);
         }
         years.push({
           title: i,
