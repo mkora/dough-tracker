@@ -11,7 +11,7 @@ use Budget\Categorization\Categorization as Categs;
 
 class ApiController
 {
-    const FIRST_YEAR = 2015;
+    const FIRST_YEAR = 2014;
 
     protected $container;
 
@@ -30,7 +30,7 @@ class ApiController
         $this->logger->addInfo("Call the api method", [__METHOD__]);
 
         $categories = Categs::getConfigLabels();
-        $result = json_encode($categories);
+        $result = json_encode(['success' => true, 'data' => $categories]);
         $this->logger->addInfo("Sending the response with data", [$result]);
 
         $response->getBody()->write($result);
@@ -52,7 +52,7 @@ class ApiController
             $result = $this->db->getItems(
               	$query = ["month" => $month, "year" => $year],
               	['category'=>1, 'date'=>-1]
-            );
+            );        
             foreach ($result as &$obj) {
               $obj = $obj->toArray();
             }
@@ -139,8 +139,7 @@ class ApiController
         }
         if ($month === null && $year === null) {
             $query = ["year" => ['$gte' => self::FIRST_YEAR]];
-            $group = ["category" => '$category',
-                "month" => '$month', "year" => '$year'];
+            $group = ["category" => '$category', "year" => '$year'];
         }
 
         try {
@@ -150,7 +149,7 @@ class ApiController
                 ['$match' => $query],
                 ['$group' => [
                     '_id' => $group,
-                    'sum' => [
+                    'sum'=> [
                       '$sum' => ['$multiply' => ['$sum', '$type']]
                     ]
                 ]]
