@@ -32,15 +32,6 @@ use \Budget\Statement\{
 class CliController
 {
 
-    const LOG_DEBUG = Log::DEBUG;
-    const LOG_INFO = Log::INFO;
-    const LOG_NOTICE = Log::NOTICE;
-    const LOG_WARNING = Log::WARNING;
-    const LOG_ERROR = Log::ERROR;
-    const LOG_CRITICAL = Log::CRITICAL;
-    const LOG_ALERT = Log::ALERT;
-    const LOG_EMERGENCY = Log::EMERGENCY;
-
     protected $container;
 
     public function __construct(ContainerInterface $container)
@@ -60,7 +51,7 @@ class CliController
         try {
         	$parser->readDir();
         } catch (ParserException $e) {
-        	$this->logIt($e->getMessage() . "! Exit", self::LOG_ERROR);
+        	$this->logIt($e->getMessage() . "! Exit", Log::ERROR);
         	exit;
         }
 
@@ -73,7 +64,7 @@ class CliController
           	try	{
           		  $ignored = $statement->parse();
           	} catch (\Exception $e) {
-          		  $this->logIt(get_class($e) . ": " . $e->getMessage() . "! Continue", self::LOG_WARNING);
+          		  $this->logIt(get_class($e) . ": " . $e->getMessage() . "! Continue", Log::WARNING);
           		  continue; // go to the next file
           	}
 
@@ -86,12 +77,12 @@ class CliController
           	try {
           		  $saved = $data->insert();
           	} catch (Throwable $e) {
-          		  $this->logIt($e->getMessage() . "! Continue", self::LOG_ERROR);
+          		  $this->logIt($e->getMessage() . "! Continue", Log::ERROR);
           		  continue; // go to the next file
           	}
 
           	$this->logIt("{$data->count()} data lines received, $saved were saved, ".
-          			"$ignored were ignored and first line was skipped", self::LOG_INFO);
+          			"$ignored were ignored and first line was skipped", Log::INFO);
             $this->logIt("...");
         }
 
@@ -112,7 +103,7 @@ class CliController
         try {
             $saved = $data->save();
         } catch (Throwable $e) {
-            $this->logIt($e->getMessage() . "! Can't save. Exit!", self::LOG_ERROR);
+            $this->logIt($e->getMessage() . "! Can't save. Exit!", Log::ERROR);
             exit;
         }
 
@@ -130,7 +121,7 @@ class CliController
         try {
             $parser->readDir();
         } catch (ParserException $e) {
-            $this->logIt($e->getMessage() . "! Exit", self::LOG_ERROR);
+            $this->logIt($e->getMessage() . "! Exit", Log::ERROR);
             exit;
         }
 
@@ -143,7 +134,7 @@ class CliController
             try	{
                 $ignored = $statement->parse();
             } catch (\Exception $e) {
-                $this->logIt(get_class($e) . ": " . $e->getMessage() . "! Continue", self::LOG_WARNING);
+                $this->logIt(get_class($e) . ": " . $e->getMessage() . "! Continue", Log::WARNING);
                 continue;
             }
 
@@ -169,7 +160,7 @@ class CliController
     }
 
 
-    protected function logIt($txt, $type = self::LOG_INFO)
+    protected function logIt($txt, $type = Log::INFO)
     {
         $this->container->get('logger')->log($type, $txt);
     }
