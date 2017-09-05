@@ -43,8 +43,11 @@ export class DataYearsComponent implements OnInit {
   }
 
   getYears() {
-    return this.tableData.map(v => v._id.year)
-      .filter((v, i, self) => self.indexOf(v) === i);
+    let years = [];
+    for (let i = this.config.dataCurrentYear; i >= this.config.dataFirstYear; i--) {
+      years.push(i);
+    }
+    return years;
   }
 
   getCellData(year, category){
@@ -86,10 +89,19 @@ export class DataYearsComponent implements OnInit {
         earned[v._id.year] += v.sum;
       }
     });
-    // accuming that data sorted from the server @todo key sort
+
+    let getVals = data => {
+      let output = [];
+      (<any>Object).keys(data)
+      .sort((a, b) => b - a)
+      .forEach((v, i) => {
+        output.push(data[v]);
+      });
+      return output;
+    }
     return [
-      {data: (<any>Object).values(earned), label: 'Earned'},
-      {data: (<any>Object).values(spent), label: 'Spent'}
+      {data: getVals(earned), label: 'Earned'},
+      {data: getVals(spent), label: 'Spent'}
     ];
   }
 

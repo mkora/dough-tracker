@@ -6,10 +6,10 @@
   (click)="onYearSelect(year.title); $event.preventDefault()">{{ year.title }}</a>
   <span class="list-group">
     <a href="#"
-    *ngFor="let month of year.months; let i = index"
-    [class.active]="isMonthSelected(year.title, i+1)"
+    *ngFor="let month of year.months"
+    [class.active]="isMonthSelected(year.title, month.num)"
     class="list-group-item pl-5"
-    (click)="onMonthSelect(year.title, i+1); $event.preventDefault()">{{ month }}</a>
+    (click)="onMonthSelect(year.title, month.num); $event.preventDefault()">{{ month.title }}</a>
   </span>
   </div>
 </div>

@@ -58,18 +58,15 @@ export class DataDetailsComponent implements OnInit {
       } else {
         earned += v.sum * v.type;
       }
-      left += v.sum * v.type; // correct
+      left += v.sum * v.type;
     }
 
     // add average column
-    const lastDate = new Date(this.year, this.month);
-
     this.tableData.push({
       category: 'total-earned',
-      date: lastDate,
       month: this.month,
       year: this.year,
-      sum: earned,
+      sum: Math.abs(earned),
       title: "Amount Earned",
       type: (earned < 0) ? -1 : 1
     });
@@ -77,20 +74,18 @@ export class DataDetailsComponent implements OnInit {
 
     this.tableData.push({
       category: 'total-spent',
-      date: lastDate,
       month: this.month,
       year: this.year,
-      sum: spent,
+      sum: Math.abs(spent),
       title: "Amount Spent",
       type: (spent < 0) ? -1 : 1
     });
 
     this.tableData.push({
       category: 'total-left',
-      date: lastDate,
       month: this.month,
       year: this.year,
-      sum: left,
+      sum: Math.abs(left),
       title: "Amount Left",
       type: (left < 0) ? -1 : 1
     });

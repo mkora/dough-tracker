@@ -37,16 +37,21 @@ export class NavDatesComponent {
   getYears(): number[] {
     let years = [];
     for (let i = this.config.dataCurrentYear; i >= this.config.dataFirstYear; i--) {
-        let months = this.config.dataMonths.slice();
-        if (i == this.config.dataFirstYear) {
-          months = months.filter((v, k) =>
-            months.indexOf(this.config.dataFirstMonthEver) <= k);
-        }
-        let currMonth = months[new Date().getMonth()];
-        if (i == this.config.dataCurrentYear) {
-          months = months.filter((v, k) =>
-            months.indexOf(currMonth) >= k);
-        }
+        const months = [], currMonth = new Date().getMonth();
+        this.config.dataMonths.slice().forEach((v, k, self) => {
+          if ((i == this.config.dataFirstYear &&
+            self.indexOf(this.config.dataFirstMonthEver) > k) ||
+          (i == this.config.dataCurrentYear &&
+            self.indexOf(self[currMonth]) < k))
+              return;
+
+          months.push({
+            num: (k + 1),
+            title: v
+          });
+
+        });
+
         years.push({
           title: i,
           months: months

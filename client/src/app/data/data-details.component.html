@@ -13,7 +13,7 @@
   <tr *ngFor="let data of tableData; let i = index" [class.table-active]="isTotalRow(data.category)">
     <th>{{i + 1}}</th>
     <td>{{getCategoryTitle(data.category)}}</td>
-    <td>{{data.date * 1000 | date: 'short'}}</td>
+    <td>{{(data.date * 1000 || '') | date: 'short'}}</td>
     <td>{{data.title}}</td>
     <td><data-item [data] = "data.sum * data.type"></data-item></td>
   </tr>
