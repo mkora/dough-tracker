@@ -13,7 +13,19 @@ Budgeting Web-Application has three parts:
 
 ## User Guide
 
-(Screenshots here)
+What do you like to know about your money? For example, you can figure out the following questions:
+
+1. How much did you spend and earn by years
+![How much did you spend and earn by years](https://user-images.githubusercontent.com/31717889/30723523-ec386600-9f05-11e7-842b-044373bf948e.png)
+
+2. What was your balance in a particular month 
+![What was your balance in a particular month](https://user-images.githubusercontent.com/31717889/30723521-ec35bcde-9f05-11e7-9866-edb928253f4e.png)
+
+3. (plus additional visualization for averages by category)
+![plus additional visualization for averages](https://user-images.githubusercontent.com/31717889/30723522-ec37187c-9f05-11e7-8a22-3e3f8adace06.png)
+
+4. What was a combined statement in a particular month 
+![What was a combined statement in a particular month](https://user-images.githubusercontent.com/31717889/30723524-ec38eb84-9f05-11e7-87bd-7e0a45da17ed.png)
 
 ## Quick Start
 ### Server
