@@ -12,9 +12,6 @@ import 'rxjs/add/operator/catch';
 
 export class DataService {
 
-  // @todo put it away
-  private apiUrl = 'http://projects-finance.dev:8080/api/';
-
   private headers = new Headers({
     'Content-Type': 'application/json'
   });
@@ -40,7 +37,7 @@ export class DataService {
   private getTableData(uri) {
     return Observable.forkJoin([
       this.http.get(this.config.apiEndpoint + 'categories').map(res => res.json()),
-      this.http.get(this.apiUrl + uri).map(res => res.json())
+      this.http.get(this.config.apiEndpoint + uri).map(res => res.json())
     ])
     .map((data: any[]) => {
       // data[0] categories data[1] sums
