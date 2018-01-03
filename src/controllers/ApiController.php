@@ -60,7 +60,7 @@ class ApiController
             if ($result) $query['result'] = $result;
             $query = ['success' => true, 'data' => $query];
         } catch (\Exception $e) {
-            $query = ['success' => false, 'msg' => "Something went wrong!"];
+            $query = ['success' => false, 'msg' => "Something went wrong! Check out logs/app.log"];
             $this->logger->addError('Error occured.', [$e]);
         }
 
@@ -110,7 +110,7 @@ class ApiController
             $query['result'] = $query;
             $query = ['success' => true, 'data' => $query];
         } catch (\Exception $e) {
-            $query = ['success' => false, 'msg' => "Something went wrong!"];
+            $query = ['success' => false, 'msg' => "Something went wrong! Check out logs/app.log"];
             $this->logger->addError('Error occured.', [$e]);
         }
 
@@ -159,7 +159,7 @@ class ApiController
             }
             $query = ['success' => true, 'data' => $query];
         } catch (\Exception $e) {
-            $query = ['success' => false, 'msg' => "Something went wrong!"];
+            $query = ['success' => false, 'msg' => "Something went wrong! Check out logs/app.log"];
             $this->logger->addError('Error occured.', [$e]);
         }
 

@@ -18,9 +18,23 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
 
-$config = require('../src/config/config.php');
-$localConfig = require('../src/config/config.local.php');
+$config = file_exists('../src/config/config.php') 
+    ? require('../src/config/config.php') 
+    : array();
+$localConfig = ('../src/config/config.local.php') 
+    ? require('../src/config/config.local.php') 
+    : array();
 $config = array_replace_recursive($config, $localConfig);
+if (!$config) {
+    $response = [
+        'success' => false,
+        'msg' => "Something went wrong! Please, check out for config.php or config.local.php"
+    ];
+    header("Access-Control-Allow-Origin: *");
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
+}
 
 $app = new \Slim\App(["settings" => $config]);
 $container = $app->getContainer();
