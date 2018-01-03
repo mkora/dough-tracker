@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
 
-  apiEndpoint: 'http://projects-finance.dev:8080/api/'
+  apiEndpoint: 'http://localhost/api/'
 };
