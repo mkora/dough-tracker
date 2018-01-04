@@ -1,15 +1,15 @@
 <div class="list-group">
   <div *ngFor="let year of years">
-  <a href="#"
-  class="list-group-item"
-  [class.active]="isYearSelected(year.title)"
-  (click)="onYearSelect(year.title); $event.preventDefault()">{{ year.title }}</a>
-  <span class="list-group">
     <a href="#"
-    *ngFor="let month of year.months"
-    [class.active]="isMonthSelected(year.title, month.num)"
-    class="list-group-item pl-5"
-    (click)="onMonthSelect(year.title, month.num); $event.preventDefault()">{{ month.title }}</a>
-  </span>
+    class="list-group-item"
+    [class.active]="isYearSelected(year.title)"
+    (click)="onYearSelect(year.title); $event.preventDefault()">{{ year.title }}</a>
+    <span class="list-group">
+      <a href="#"
+      *ngFor="let month of year.months"
+      [class.active]="isMonthSelected(year.title, month.num)"
+      class="list-group-item pl-5"
+      (click)="onMonthSelect(year.title, month.num); $event.preventDefault()">{{ month.title }}</a>
+    </span>
   </div>
 </div>
