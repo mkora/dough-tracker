@@ -1,13 +1,15 @@
 <!-- Page Content -->
 <div class="container">
   <div class="jumbotron">
-    <h1>Simple Home Finance Application</h1>
+    <h1>Let's make some dough!</h1>
+    <blockquote class="blockquote text-right">
+      <p>I’m going back to business and make myself a little dough</p>
+      <p class="blockquote-footer"><cite>Times</cite>, London, Aug. 3, 1955</p>
+    </blockquote>  
     <div class="lead">
-      <strong>Simple Home Finance Application</strong> calculates
-      and displays statistic in tables and graphs on your spendings,
-      earnings and savings by receiving data from the Home Finance
-      server that stores information from parsed and categorozed
-      Bank of America, Citizen and Discover statments.
+      This <strong>expenses tracker</strong> helps you to track income and expenses 
+      by analyzing monthly credit card statements (from Bank of America, Citizen, Discover).
+      Let's see what you make!
     </div>
   </div>
   <div class="row">
@@ -16,20 +18,21 @@
       <div class="lead">
         <ul>
           <li class="pb-2">
-            Start by clicking on the <em>Balance</em> link in the top level
-            navigation bar to access the <em>Complete Statistics</em> page.
+            Start by clicking on the <em>Balance</em> in the top level
+            navigation bar to access the <em>Complete Statistics by Years</em> page.
           </li>
           <li class="pb-2">
-            Next, follow on the right navigation bar to access the
-            <em>Complete Balance</em> page in a choosen year and the
-            <em>Detail</em> page of all trasactions made in a choosen month.
+            Next, follow on the right navigation bar by clicking on a year 
+            to access the <em>Complete Balance in a Choosen Year</em> page. Or,
+            by clicking on a month to access the <em>Detail</em> page 
+            of all trasactions made in that period.
           </li>
           <li>
             <span class="pb-2">Try here,</span>
             <ul>
-              <li><a class="nav-link" routerLink="/data">Complete Statistics</a></li>
-              <li><a class="nav-link" routerLink="/data/2017">Complete Balance in 2017</a></li>
-              <li><a class="nav-link" routerLink="/data">Detail in Jan, 2017</a></li>
+              <li><a class="nav-link" routerLink="/data">Complete Statistics by Years</a></li>
+              <li><a class="nav-link" [routerLink]="['/data/', currentYear]">Complete Balance in {{ currentYear }}</a></li>
+              <li><a class="nav-link" [routerLink]="['/data/', currentYear, '1']">Detail in Jan, {{ currentYear }}</a></li>
             </ul>
           </li>
         </ul>
