@@ -32,8 +32,8 @@ export class DataYearsComponent implements OnInit {
 
   ngOnInit() {
     this.service.getYearsTableData().subscribe((data: any) => {
-      this.categories = data.categories || {};
-      this.tableData = data.sums.result || [];
+      this.categories = data && data.categories || {};
+      this.tableData = data && data.sums.result || [];
       this.years = this.getYears();
       if (!this.tableData.length) return;
       this.calculateStats();

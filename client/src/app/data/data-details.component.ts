@@ -31,8 +31,8 @@ export class DataDetailsComponent implements OnInit {
 
     }).subscribe((data: any) => {
 
-      this.categories = data.categories || {};
-      this.tableData = data.sums.result || [];
+      this.categories = data && data.categories || {};
+      this.tableData = data && data.sums.result || [];
 
       if (!this.tableData.length) return;
 
