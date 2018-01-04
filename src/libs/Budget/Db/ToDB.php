@@ -110,22 +110,20 @@ class ToDB implements DbAdapterInterface
 		]);
 		 */
 
-		$result = $this->manager->executeCommand($this->dbname,
+		$cursor = $this->manager->executeCommand($this->dbname,
 									new MongoCommand([
 										'aggregate' => $this->dbcollection,
 										'pipeline' => $c,
+										'cursor' => new \stdClass,
 									])
 								);
-
-		$result = (array)current($result->toArray());
-
-		if (isset($result['ok']) && $result['ok'] == 1 && !empty($result['result'])) {
-			return array_map(function($v) {
-				return (array)$v;
-			}, $result['result']);
+		
+		$result = [];
+		foreach ($cursor as $item) {
+			$result[] = (array)$item;
 		}
-
-		return false;
+		
+		return $result ?? false;
 	}
 
 
