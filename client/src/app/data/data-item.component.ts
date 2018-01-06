@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'data-item',
+  selector: 'app-data-item',
   template: `
   <span
     [innerText]="data | currency: 'USD':true | replace: '-': ' '"
@@ -9,9 +9,6 @@ import { Component, Input } from '@angular/core';
   </span>
   `
 })
-
 export class DataItemComponent {
-
   @Input() data: number;
-
 }

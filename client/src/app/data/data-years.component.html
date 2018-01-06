@@ -13,13 +13,13 @@
     <tr *ngFor="let category of categories | toArray" [class.table-active]="isTotalRow(category)">
       <th scope="row">{{ category }}</th>
       <td *ngFor="let year of years" [class.table-warning]="isNotFullYear(year)">
-        <data-item [data]="getCellData(year, category)"></data-item>
+        <app-data-item [data]="getCellData(year, category)"></app-data-item>
       </td>
     </tr>
   </tbody>
   </table>
-  <bar-chart [title]="'Total Debit and Credit by Years'"
-    [seriesData]="chartData" [labels]="years"></bar-chart>
+  <app-bar-chart [title]="'Total Debit and Credit by Years'"
+    [seriesData]="chartData" [labels]="years"></app-bar-chart>
 </div>
 <div *ngIf="!tableData?.length">
   <h3>No data found</h3>

@@ -6,11 +6,10 @@ import { APP_CONFIG, AppConfig } from './app-config.module';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-  selector: 'nav-dates',
+  selector: 'app-nav-dates',
   templateUrl: './nav-dates.component.html'
 })
-
-export class NavDatesComponent {
+export class NavDatesComponent implements OnInit {
 
   years: number[];
 
@@ -24,8 +23,7 @@ export class NavDatesComponent {
     @Inject(APP_CONFIG) private config: AppConfig
   ) {}
 
-
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.paramMap
       .subscribe((params: ParamMap) => {
         this.selectedYear = +params.get('year');
@@ -35,23 +33,24 @@ export class NavDatesComponent {
   }
 
   getYears(): number[] {
-    let years = [];
+    const years = [];
     for (let i = this.config.dataCurrentYear; i >= this.config.dataFirstYear; i--) {
-        const months = [], currMonth = new Date().getMonth();
-        this.config.dataMonths.slice().forEach((v, k, self) => {
-          if ((i == this.config.dataFirstYear &&
-            self.indexOf(this.config.dataFirstMonthEver) > k) ||
-          (i == this.config.dataCurrentYear &&
-            self.indexOf(self[currMonth]) < k))
+        const months = [];
+        const currMonth = new Date().getMonth();
+        this.config.dataMonths.slice()
+          .forEach((v, k, self) => {
+            if ((i === this.config.dataFirstYear
+                && (self.indexOf(this.config.dataFirstMonthEver) > k))
+              || (i === this.config.dataCurrentYear
+                && (self.indexOf(self[currMonth]) < k))
+            ) {
               return;
-
-          months.push({
-            num: (k + 1),
-            title: v
-          });
-
+            }
+            months.push({
+              num: (k + 1),
+              title: v
+            });
         });
-
         years.push({
           title: i,
           months: months
@@ -61,7 +60,7 @@ export class NavDatesComponent {
   }
 
   isYearSelected(year: number) {
-    return year === this.selectedYear;
+    return (year === this.selectedYear);
   }
 
   onYearSelect(year) {
@@ -71,14 +70,13 @@ export class NavDatesComponent {
   }
 
   isMonthSelected(year: number, month: number) {
-    return year === this.selectedYear && month === this.selectedMonth;
+    return (year === this.selectedYear)
+      && (month === this.selectedMonth);
   }
 
-  onMonthSelect(year:number, month: number) {
+  onMonthSelect(year: number, month: number) {
     this.selectedYear = year;
     this.selectedMonth = month;
     this.router.navigate(['/data', year, month]);
   }
-
-
 }

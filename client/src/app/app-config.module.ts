@@ -46,5 +46,4 @@ export const APP_DI_CONFIG: AppConfig = {
     useValue: APP_DI_CONFIG
   }]
 })
-
 export class AppConfigModule { }

@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
+  selector: 'app-data-details',
   templateUrl: './data-details.component.html'
 })
 export class DataDetailsComponent implements OnInit {
@@ -26,19 +27,15 @@ export class DataDetailsComponent implements OnInit {
     this.route.paramMap.switchMap((params: ParamMap) => {
       this.year = +params.get('year');
       this.month = +params.get('month');
-
-      return this.service.getDetailsTableData(this.year, this.month);
-
+      return this.service
+        .getDetailsTableData(this.year, this.month);
     }).subscribe((data: any) => {
-
       this.categories = data && data.categories || {};
       this.tableData = data && data.sums.result || [];
-
-      if (!this.tableData.length) return;
-
-      this.calculateStats();
+      if (this.tableData.length) {
+        this.calculateStats();
+      }
     });
-
   }
 
   getCategoryTitle(category) {
@@ -50,9 +47,11 @@ export class DataDetailsComponent implements OnInit {
   }
 
   private calculateStats() {
-    let left = 0, spent = 0, earned = 0;
-    for (let i in this.tableData) {
-      let v = this.tableData[i];
+    let left = 0;
+    let spent = 0;
+    let earned = 0;
+    for (let i = 0; i < this.tableData.length; i++) {
+      const v = this.tableData[i];
       if (v.type < 1) {
         spent += v.sum * v.type;
       } else {
@@ -67,17 +66,16 @@ export class DataDetailsComponent implements OnInit {
       month: this.month,
       year: this.year,
       sum: Math.abs(earned),
-      title: "Amount Earned",
+      title: 'Amount Earned',
       type: (earned < 0) ? -1 : 1
     });
-
 
     this.tableData.push({
       category: 'total-spent',
       month: this.month,
       year: this.year,
       sum: Math.abs(spent),
-      title: "Amount Spent",
+      title: 'Amount Spent',
       type: (spent < 0) ? -1 : 1
     });
 
@@ -86,14 +84,13 @@ export class DataDetailsComponent implements OnInit {
       month: this.month,
       year: this.year,
       sum: Math.abs(left),
-      title: "Amount Left",
+      title: 'Amount Left',
       type: (left < 0) ? -1 : 1
     });
 
     this.categories['total-earned'] = 'Amount Earned';
     this.categories['total-spent'] = 'Amount Spent';
     this.categories['total-left'] = 'Amount Left';
-
   }
 
 }
