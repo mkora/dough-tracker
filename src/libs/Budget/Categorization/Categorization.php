@@ -6,7 +6,7 @@ use Statement\Data\Transaction;
 
 class Categorization
 {
-	const PATH = '/rules/credit_categ.php';
+	const PATH = '/rules/credit_categ_local.php';
 
 	const DEFAULT_DEBIT_CATEGORY = 'groceries';
 
@@ -50,7 +50,7 @@ class Categorization
 	{
 		$path = __DIR__ . self::PATH;
 		if (!file_exists($path))
-			$path = str_replace('.php', '_example.php', $path);
+			$path = str_replace('_local', '', $path);
 		if (!file_exists($path))
 			throw new \Exception('Can\'t find rules/credit_config.php!');
 		return include($path);
