@@ -18,13 +18,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
 
-$config = file_exists('../src/config/config.php') 
-    ? require('../src/config/config.php') 
-    : array();
-$localConfig = ('../src/config/config.local.php') 
-    ? require('../src/config/config.local.php') 
-    : array();
-$config = array_replace_recursive($config, $localConfig);
+$config = require('../src/config/index.php');
 if (!$config) {
     $response = [
         'success' => false,

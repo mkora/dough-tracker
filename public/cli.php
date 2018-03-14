@@ -15,9 +15,11 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
 
-$config = require('../src/config/config.php');
-$localConfig = require('../src/config/config.local.php');
-$config = array_replace_recursive($config, $localConfig);
+$config = require('../src/config/index.php');
+if (!$config) {
+    echo "Something went wrong! Please, check out for config.php or config.local.php";
+    exit;
+}
 
 $app = new \Slim\App(["settings" => $config]);
 $container = $app->getContainer();
