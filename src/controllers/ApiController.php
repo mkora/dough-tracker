@@ -19,7 +19,8 @@ class ApiController
 
     protected $db;
 
-    public function __construct(ContainerInterface $container) {
+    public function __construct(ContainerInterface $container)
+    {
         $this->container = $container;
         $this->logger = $this->container->get('logger');
         $this->db = $this->container->get('db');

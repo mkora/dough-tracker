@@ -3,12 +3,13 @@
 namespace Budget\Db;
 
 use Budget\Statement\Data\Transaction as T;
+use \Budget\Db\ToDBException as DBException;
 
 use \MongoDB\Driver\{
-		Manager as MongoManager,
-		Query as MongoQuery,
-		Command as MongoCommand,
-		BulkWrite as MongoWriter
+	Manager as MongoManager,
+	Query as MongoQuery,
+	Command as MongoCommand,
+	BulkWrite as MongoWriter
 };
 use \MongoDB\Driver\Exception\{
 	ConnectionException as MongoConnectionException,
@@ -42,7 +43,7 @@ class ToDB implements DbAdapterInterface
 		$result = array();
 
 		$cursor = $this->manager->executeQuery("$this->dbname.$this->dbcollection",
-								new MongoQuery($c, ['sort' => $sort]));
+			new MongoQuery($c, ['sort' => $sort]));
 
 		foreach ($cursor as $d) {
 			$result[] = new T((array)$d);
@@ -57,8 +58,8 @@ class ToDB implements DbAdapterInterface
 		$id = $bulk->insert($a->toArray());
 
 		try {
-	    $result = $this->manager->executeBulkWrite("$this->dbname.$this->dbcollection",
-										$bulk);
+			$result = $this->manager->executeBulkWrite("$this->dbname.$this->dbcollection",
+				$bulk);
 		} catch (MongoException $e) {
 		    throw new ToDBException(get_class($e) . ': ' . $e->getMessage());
 		}
@@ -80,13 +81,13 @@ class ToDB implements DbAdapterInterface
 		$bulk->update($filter, $update, ['multiple' => true]);
 
 		try {
-    $result = $this->manager->executeBulkWrite("$this->dbname.$this->dbcollection",
-									$bulk);
+    		$result = $this->manager->executeBulkWrite("$this->dbname.$this->dbcollection",
+				$bulk);
 		} catch (MongoException $e) {
 			throw new ToDBException(get_class($e) . ': ' . $e->getMessage());
 		}
 
-    return $result->getModifiedCount();
+    	return $result->getModifiedCount();
 
 	}
 
@@ -111,12 +112,12 @@ class ToDB implements DbAdapterInterface
 		 */
 
 		$cursor = $this->manager->executeCommand($this->dbname,
-									new MongoCommand([
-										'aggregate' => $this->dbcollection,
-										'pipeline' => $c,
-										'cursor' => new \stdClass,
-									])
-								);
+			new MongoCommand([
+				'aggregate' => $this->dbcollection,
+				'pipeline' => $c,
+				'cursor' => new \stdClass,
+			])
+		);
 		
 		$result = [];
 		foreach ($cursor as $item) {
@@ -126,26 +127,18 @@ class ToDB implements DbAdapterInterface
 		return $result ?? false;
 	}
 
+	public function existItem(T $a) : bool
+	{
+		$v = $a->toArray();
+		$cursor = $this->manager->executeQuery("$this->dbname.$this->dbcollection",
+			new MongoQuery($v));
+		return count($cursor->toArray());
+
+	}
+
 
 	public function countItems(array $c = array())
 	{
-		// @todo
-		$items = $this->manager->executeQuery("$this->dbname.$this->dbcollection",
-									new MongoQuery($c));
-
-		return count($items);
-
+		throw new DBException('ToDB::countItems has not been implemented');
 	}
-
-
-	public function existItem(array $c)
-	{
-		// @todo
-		$items = $this->manager->executeQuery("$this->dbname.$this->dbcollection",
-									new MongoQuery($c));
-
-		return (bool)count($items);
-
-	}
-
 }

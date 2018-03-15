@@ -16,6 +16,6 @@ interface DbAdapterInterface
 
   	public function countItems(array $c = array());
 
-  	public function existItem(array $c);
+  	public function existItem(T $a);
 
 }
