@@ -104,7 +104,7 @@ export class ChartComponent {
     this.chartType = 'polarArea';
   }
 
-  get isPolarChart():boolean {
+  get isPolarChart(): boolean {
     return this._isPolarChart;
   }
 
