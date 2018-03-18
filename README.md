@@ -17,15 +17,19 @@ Let me introduce you:
 ## User Guide
 
 1. How much did you spend and earn by years
+
 ![How much did you spend and earn by years](https://user-images.githubusercontent.com/31717889/30723523-ec386600-9f05-11e7-842b-044373bf948e.png)
 
 2. What was your balance in a particular month
+
 ![What was your balance in a particular month](https://user-images.githubusercontent.com/31717889/30723521-ec35bcde-9f05-11e7-9866-edb928253f4e.png)
 
   2.1. (plus additional visualization for averages by category)
+
   ![plus additional visualization for averages](https://user-images.githubusercontent.com/31717889/30723522-ec37187c-9f05-11e7-8a22-3e3f8adace06.png)
 
 3. What was your statement in a particular month
+
 ![What was a combined statement in a particular month](https://user-images.githubusercontent.com/31717889/30723524-ec38eb84-9f05-11e7-87bd-7e0a45da17ed.png)
 
 ## Install notes
@@ -39,13 +43,13 @@ Let me introduce you:
   $ mkdir logs && chmod 777 logs
   ```
 
-* Add the app config file (see an example in `src/config/config.example.php`):
+* Add an app config file (see an example in `src/config/config.example.php`):
 
   ```
   $ vi src/config/config.php
   ```
 
-* Check out what happenes in the main app log file:
+* Check out the main app log file:
 
   ```
   $ tail -f logs/app.log
@@ -57,7 +61,7 @@ Let me introduce you:
   $ mkdir data && chmod 777 data
   ```
 
-* To run the parser see 'Utilities' section
+* How to run the parser see 'Utilities' section
 
 * For local machines: don't forget to configure an nginx / Apache virtual host if needed
 
@@ -72,7 +76,7 @@ Let me introduce you:
   $ npm install
   ```
 
-* Make sure the `apiEndpoint` environment variable is set to the API URL:
+* Make sure the **apiEndpoint** environment variable is set to API URL:
   
   ```
   $ cd client/
@@ -91,7 +95,7 @@ Let me introduce you:
 
 ## Utilities
 
-  ###Main parser utilities
+  ### Main parser utilities
 
   * Parse the statements dir:
 
@@ -105,7 +109,7 @@ Let me introduce you:
   $ cd public && php cli.php /cli/parse-files GET file=*.CSV
   ```
 
-  ###Additional utils
+  ### Additional utils
 
   ```
   $ cd public/
@@ -114,11 +118,11 @@ Let me introduce you:
   $ php cli.php /cli/mock-file GET
   ```
   
-   ###Naming convention
+   ### Naming convention
 
-   * **cit-** - Citizen statements prefix
-   * **boa-** - Bank of America statements prefix
-   * **dis-** - Discover statments prefix
+   * **"cit-"** - Citizen statements prefix
+   * **"boa-"** - Bank of America statements prefix
+   * **"dis-"** - Discover statments prefix
 
 ## API Endpoints
 
