@@ -4,9 +4,7 @@ PHP7, Slim, MongoDB, Angular 4, Bootstrap 4
 
 ## Overview
 
-**An expenses tracker that helps you to track your income and expenses by analyzing monthly credit card statements**
-
-Let me introduce you:
+An expenses tracker that helps you track your income and expenses by analyzing monthly credit card statements
 
 * A parser for analyzing and categorizing data from financial statements (supported providers are Bank of America, Citizen and Discover)
 
