@@ -79,4 +79,14 @@ export class NavDatesComponent implements OnInit {
     this.selectedMonth = month;
     this.router.navigate(['/data', year, month]);
   }
+
+  isHomeSelected() {
+    return (!this.selectedYear && !this.selectedMonth);
+  }
+
+  onHomeSelect() {
+    this.selectedYear = 0;
+    this.selectedMonth = 0;
+    this.router.navigate(['/data']);
+  }
 }
