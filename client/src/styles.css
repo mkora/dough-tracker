@@ -13,6 +13,33 @@ footer {
   padding: 30px 0;
 }
 
+.fixed {
+  width: 150px;
+  position: absolute;
+  left: 0;
+  top: auto;
+  white-space: normal;
+  background: #ddd;
+  border-top: 1px solid #eee !important;
+}
+
+.fixed + td,
+.fixed + th {
+  padding-left: 180px !important;
+}
+
+tr.table-active .fixed {
+  background: #ccc;
+}
+
+tr.table-active td {
+  border-top: 1px solid #eee !important;
+}
+tr td.table-active  {
+  border-top: 1px solid #ccc !important;
+}  
+
+
 /*
  * Off Canvas
  * --------------------------------------------------

@@ -2,7 +2,7 @@
 <table class="table table-responsive" *ngIf="tableData?.length">
   <thead>
     <tr>
-      <th>#</th>
+      <th class="fixed">#</th>
       <th *ngFor="let month of months">
         {{ month }}
       </th>
@@ -10,7 +10,7 @@
   </thead>
 <tbody>
   <tr *ngFor="let category of categories | toArray" [class.table-active]="isTotalRow(category)">
-    <th scope="row">{{ category }}</th>
+    <th class="fixed"scope="row">{{ category }}</th>
     <td *ngFor="let month of months; let i = index" [class.table-active]="isAvgColumn(month)">
       <app-data-item [data] = "getCellData(i + 1, category)"></app-data-item>
     </td>
