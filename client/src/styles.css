@@ -14,7 +14,7 @@ footer {
 }
 
 .fixed {
-  width: 150px;
+  width: 180px;
   position: absolute;
   left: 0;
   top: auto;
@@ -25,7 +25,7 @@ footer {
 
 .fixed + td,
 .fixed + th {
-  padding-left: 180px !important;
+  padding-left: 190px !important;
 }
 
 tr.table-active .fixed {
