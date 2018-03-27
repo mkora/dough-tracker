@@ -1,4 +1,4 @@
-# Money Management System
+# Dough Tracker
 
 PHP7, Slim, MongoDB, Angular 4, Bootstrap 4
 
@@ -30,7 +30,7 @@ An expenses tracker that helps you track your income and expenses by analyzing m
 
 ![What was a combined statement in a particular month](https://user-images.githubusercontent.com/31717889/30723524-ec38eb84-9f05-11e7-87bd-7e0a45da17ed.png)
 
-## Install notes
+## Install Notes
 
 ### Server
 
@@ -61,9 +61,9 @@ An expenses tracker that helps you track your income and expenses by analyzing m
 
 * How to run the parser see 'Utilities' section
 
-* For local machines: don't forget to configure an nginx / Apache virtual host if needed
+* Note: For local machines: don't forget to configure an nginx / Apache virtual host if needed
 
-* To redefine parser's grouping categories update `src/libs/Budget/Categorization/rules/credit_categ.php` (or create a local `credit_categ_local.php`)
+* Note: To redefine parser's grouping categories update `src/libs/Budget/Categorization/rules/credit_categ.php` (or create a local `credit_categ_local.php`)
 
 ### Client
 
@@ -74,7 +74,7 @@ An expenses tracker that helps you track your income and expenses by analyzing m
   $ npm install
   ```
 
-* Make sure the **apiEndpoint** environment variable is set to API URL:
+* Make sure **apiEndpoint** variable is set to API URL:
   
   ```
   $ cd client/
@@ -89,13 +89,13 @@ An expenses tracker that helps you track your income and expenses by analyzing m
   $ cd client/ && ng serve --env=local
   ```
 
-* Open a local copy at `http://localhost:4200`
+* Browse to `http://localhost:4200`
 
 ## Utilities
 
   ### Main parser utilities
 
-  * Parse the statements dir:
+  * Parse all statements in the directory:
 
   ```
   $ cd public && php cli.php /cli/parse-files GET
@@ -160,5 +160,5 @@ An expenses tracker that helps you track your income and expenses by analyzing m
     
   * Call **categories** to get a full list of categories
 
-     For example, `/api/categories`    
+     For example, `/api/categories`
 
