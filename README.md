@@ -37,26 +37,26 @@ An expenses tracker that helps you track your income and expenses by analyzing m
 * Install dependencies:
 
   ```
-  $ php composer install
-  $ mkdir logs && chmod 777 logs
+  php composer install
+  mkdir logs && chmod 777 logs
   ```
 
 * Add an app config file (see an example in `src/config/config.example.php`):
 
   ```
-  $ vi src/config/config.php
+  vi src/config/config.php
   ```
 
 * Check out the main app log file:
 
   ```
-  $ tail -f logs/app.log
+  tail -f logs/app.log
   ```
 
 * When using the parser, put your financial statements in `/data`:
 
   ```
-  $ mkdir data && chmod 777 data
+  mkdir data && chmod 777 data
   ```
 
 * How to run the parser see 'Utilities' section
@@ -70,23 +70,23 @@ An expenses tracker that helps you track your income and expenses by analyzing m
 * Install dependencies:
 
   ```
-  $ cd client/
-  $ npm install
+  cd client/
+  npm install
   ```
 
 * Make sure **apiEndpoint** variable is set to API URL:
   
   ```
-  $ cd client/
-  $ vi /src/environments/environment.local.ts
-  -- OR
-  $ vi /src/environments/environment.prod.ts
+  cd client/
+  vi /src/environments/environment.local.ts
+  # OR
+  vi /src/environments/environment.prod.ts
   ```
 
 * Run the client:
 
   ```
-  $ cd client/ && ng serve --env=local
+  cd client/ && ng serve --env=local
   ```
 
 * Browse to `http://localhost:4200`
@@ -98,22 +98,21 @@ An expenses tracker that helps you track your income and expenses by analyzing m
   * Parse all statements in the directory:
 
   ```
-  $ cd public && php cli.php /cli/parse-files GET
+  cd public && php cli.php /cli/parse-files GET
   ```
 
   * Parse a statement after a statement
 
   ```
-  $ cd public && php cli.php /cli/parse-files GET file=*.CSV
+  cd public && php cli.php /cli/parse-files GET file=*.CSV
   ```
 
   ### Additional utils
 
   ```
-  $ cd public/
-  $ php cli.php /cli/recategorize GET
-  $ php cli.php /cli/output-titles GET
-  $ php cli.php /cli/mock-file GET
+  cd public/
+  php cli.php /cli/recategorize GET
+  php cli.php /cli/output-titles GET
   ```
   
    ### Naming convention
