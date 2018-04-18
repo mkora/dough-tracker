@@ -4,5 +4,12 @@ namespace Budget\Db;
 
 interface DbSetterInterface
 {
-  public function setDbAdapter(ToDB $db);
+    /**
+     * Sets DB Adapter
+     *
+     * @param DbAdapterInterface $db adapter
+     *
+     * @return void
+     */
+    public function setDbAdapter(DbAdapterInterface $db);
 }

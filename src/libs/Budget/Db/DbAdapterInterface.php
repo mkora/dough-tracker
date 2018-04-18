@@ -6,16 +6,61 @@ use Budget\Statement\Data\Transaction as T;
 
 interface DbAdapterInterface
 {
-  	public function getItems(array $c = array(), $sort = array()) : array;
+    /**
+     * Gets results from collection
+     *
+     * @param array $c    criterion
+     * @param array $sort critetion
+     *
+     * @return array
+     */
+    public function getItems(
+        array $c = array(),
+        $sort = array()
+    ): array;
 
-  	public function insertItem(T $a) : int;
+    /**
+     * Inserts Transaction to a collection
+     *
+     * @param T $a Transaction
+     *
+     * @return integer
+     */
+    public function insertItem(T $a): int;
 
-  	public function saveItem(T $a) : int;
+    /**
+     * Updates Transaction in a collection
+     *
+     * @param T $a Transaction
+     *
+     * @return integer
+     */
+    public function saveItem(T $a): int;
 
-  	public function aggregateItems(array $c = array());
+    /**
+     * Returns aggregated data
+     *
+     * @param array $c creterion
+     *
+     * @return void
+     */
+    public function aggregateItems(array $c = array());
 
-  	public function countItems(array $c = array());
+    /**
+     * Returns number of records
+     *
+     * @param array $c creterion
+     *
+     * @return void
+     */
+    public function countItems(array $c = array());
 
-  	public function existItem(T $a);
-
+    /**
+     * Returns if item exists
+     *
+     * @param T $a Transaction
+     *
+     * @return boolean
+     */
+    public function existItem(T $a): bool;
 }
